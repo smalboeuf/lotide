@@ -9,7 +9,7 @@ const assertEqual = function(actual, expected) {
 //Loops through given array and pushes value to a new array excluding the first number
 function tail(givenArray) {
   let tailArray = [];
-  for(let i = 1; i < givenArray.length; i++){
+  for (let i = 1; i < givenArray.length; i++) {
     tailArray.push(givenArray[i]);
   }
 
@@ -17,5 +17,5 @@ function tail(givenArray) {
 }
 
 const words = ["Greetings", "testing", "words"];
-console.log(ail(words)); 
-assertEqual(words.length, 3); 
+console.log(tail(words));
+assertEqual(words.length, 3);
