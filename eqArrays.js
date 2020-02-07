@@ -8,26 +8,28 @@ const assertEqual = function(actual, expected) {
 };
 
 
-function eqArrays(arrayOne, arrayTwo) {
-  let arrayOneNumbs = [];
-  let arrayTwoNumbs = [];
-
-  //Convert the arrays to numbers
-  for (let i = 0; i < arrayOne.length; i++) {
-    arrayOneNumbs[i] = Number(arrayOne[i]);
-  }
-
-  for (let i = 0; i < arrayTwo.length; i++) {
-    arrayTwoNumbs[i] = Number(arrayTwo[i]);
-  }
+const eqArrays = function (arrayOne, arrayTwo) {
+  let arrayOneCopy = arrayOne;
+  let arrayTwoCopy = arrayTwo;
 
   //making sure both arrays have the same length
-  if (arrayOneNumbs.length === arrayTwoNumbs.length) {
+  if (arrayOneCopy.length === arrayTwoCopy.length) {
 
-    for (let i = 0; i < arrayOneNumbs.length; i++) {
-      if (arrayOneNumbs[i] !== arrayTwoNumbs[i]) {
-        return false;
+    for (let i = 0; i < arrayOneCopy.length; i++) {
+
+      if (Array.isArray(arrayOneCopy[i])) {
+        if (Array.isArray(arrayTwoCopy[i])) {
+
+          if (!eqArrays(arrayOneCopy[i], arrayTwoCopy[i])) {
+            return false;
+          }
+
+        } else {
+          return false;
+        }
       }
+
+
     }
 
   } else {
@@ -37,6 +39,9 @@ function eqArrays(arrayOne, arrayTwo) {
   return true;
 }
 
+console.log(eqArrays([[2, 3], [4]], [[2, 3], [4]])); // => true
 
+console.log(eqArrays([[2, 3], [4]], [[2, 3], [4, 5]])); // => false
+console.log(eqArrays([[2, 3], [4]], [[2, 3], 4])); // => false
 
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
+//assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
