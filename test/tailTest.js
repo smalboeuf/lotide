@@ -1,7 +1,14 @@
 const tail = require('../tail');
-const assertEqual = require('../assertEqual');
+
+const assert = require('chai').assert;
+const { expect } = require('chai');
 
 
-const words = ["Greetings", "testing", "words"];
-console.log(tail(words));
-assertEqual(words.length, 3);
+describe('tail()', () => {
+  it("should return [testing, words] from [Greetings, testing, words]", () => {
+    const words = ["Greetings", "testing", "words"];
+    expect(tail(words)).to.eql(["testing", "words"]);
+  });
+});
+
+
