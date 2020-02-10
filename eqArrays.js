@@ -1,5 +1,4 @@
 
-
 const eqArrays = function (arrayOne, arrayTwo) {
   let arrayOneCopy = arrayOne;
   let arrayTwoCopy = arrayTwo;
